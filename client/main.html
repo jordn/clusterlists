@@ -1,0 +1,111 @@
+<head>
+  <script type="text/javascript" src="jquery-ui-1.10.4.min.js"></script>
+  <script type="text/javascript" src="jquery.color-2.1.2.min.js"></script>	<title>Manage Twitter Lists | Cluster</title>
+</head>
+
+<body>
+  {{#if currentUser}}
+    {{> manager}}
+  {{else}}
+    {{> landing}}
+  {{/if}}
+</body>
+
+<template name="landing">
+  <div class="hero">
+    <div class="container">
+      <header class="row text-center">
+        <h1>Cluster</h1>
+        <h4>Separate voices from the noise.<br>Take control of your timeline with drag-and-drop lists.</h4>
+        <div class="account">
+          {{> loginButtons}}
+        </div>
+        <p>Made by <a href="http://twitter.com/jordnb" target="_blank">@jordnb</a> and <a href="http://twitter.com/joeroot" target="_blank">@joeroot</a></p>
+      </header>
+    </div>
+  </div>
+</template>
+
+
+<template name="manager">
+
+  <aside class="">
+    <header>
+      <h1>LISTS <small><a id="refresh-lists" href="#refresh"><i class="fi-refresh"></i></a></small></h1>
+    </header>
+    <main>
+      {{> lists}}
+    </main>
+  </aside>
+
+  <main>
+    <header>
+      <div class="account">
+        {{> loginButtons}}
+      </div>
+    </header>
+    {{> friends}}
+  </main>
+</template>
+
+
+
+<template name="lists">
+  <ul>
+    {{#each lists}}
+      {{> list}}
+    {{else}}
+      <h4>Create a list <i class="fi-arrow-down"></i></h4>
+    {{/each}}
+  </ul>
+  <div class="text-center"><br><br>
+    <a href="#create-list" class="button radius secondary expand" id="add-list"><i class="fi-plus"></i> New List</a>
+  </div>
+</template>
+
+
+<template name="list">  
+  <li class="clearfix">
+    <a class="link has-tip" data-tooltip title="View {{name}} on Twitter" href="https://twitter.com/{{currentUser.services.twitter.screenName}}/lists/{{slug}}" target="_blank"><i class="fi-social-twitter"></i></a>
+    <a href="#" class="list {{slug}}" data-slug="{{slug}}" data-name="{{name}}" data-id="{{id}}" data-color="#328fa4" data-list="{{slug}}">{{name}}</a>
+  </li>
+</template>
+
+<template name="friends">
+  <ul>
+    {{#each friends}}
+      {{>friend}}
+    {{else}}
+      <h2>Loading...</h2>
+    {{/each}}
+  </ul>
+  <div class="text-center" style="width:510px;">
+    <a class="button more radius secondary" href="#more">Load more users</a>
+  </div>
+</template>
+
+
+<template name="friend">
+  <li class="user clearfix" data-slug="{{screen_name}}">
+
+    <div class="user-details clearfix">
+      <div class="avatar left">
+        <img src="{{profile_image_url}}" />
+      </div>
+      <div class="details left">          
+        <h1>{{name}} <small><a href="https://twitter.com/{{screen_name}}" target="_blank">@{{screen_name}}</a></small></h1>
+        <p>{{description}}</p>
+      </div>
+      <div class="overlay">
+        <div class="bubble"><span>Add to List</span></div>
+      </div>
+    </div>
+
+    <ul class="memberships">
+      {{#each member_of}}
+        <li class="{{slug}} slug" data-id="{{id}}" data-name="{{name}}" data-user="{{../screen_name}}"><a class="remove" href="#remove-from-list"><i class="fi-x"></i> </a> {{name}}</li>
+      {{/each}}
+    </ul>
+
+  </li>
+</template>

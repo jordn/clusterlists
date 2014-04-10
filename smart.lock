@@ -1,0 +1,24 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "twitter-api": {
+        "git": "https://github.com/amaygurov/meteor-twitter-api.git",
+        "branch": "master"
+      },
+      "scss": {}
+    },
+    "packages": {
+      "twitter-api": {
+        "git": "https://github.com/amaygurov/meteor-twitter-api.git",
+        "branch": "master",
+        "commit": "70e8567cc3312bfa9fcd43634ee71d624060183f"
+      },
+      "scss": {
+        "git": "https://github.com/fourseven/meteor-scss.git",
+        "tag": "v0.8.4",
+        "commit": "11af0da643944d241fe7d173af76162c4b670dee"
+      }
+    }
+  }
+}

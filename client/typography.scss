@@ -1,0 +1,72 @@
+
+/*@font-face {
+  font-family: 'neotech';
+  src:         url('/fonts/neotech-book-webfont.eot');
+  src:         local('☺'), url('/fonts/neotech-medium-webfont.woff') format('woff'), url('/fonts/neotech-medium-webfont.ttf') format('truetype'), url('/fonts/neotech-medium-webfont.svg#webfontMRU81k0R') format('svg');
+  font-weight: normal;
+  font-style:  normal;
+}
+
+*/
+@font-face {
+  font-family: 'gotham-bold';
+  src:         url('/fonts/gotham-book-webfont.eot');
+  src:         local('☺'), url('/fonts/gotham-book-webfont.woff') format('woff'), url('/fonts/gotham-book-webfont.ttf') format('truetype'), url('/fonts/gotham-book-webfont.svg#webfontMRU81k0R') format('svg');
+  font-weight: normal;
+  font-style:  normal;
+}
+
+
+html, body {
+  font-family: "gotham-bold", "Helvetica Neue", "Helvetica", "Source Sans Pro", "gotham-bold", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  color:#333;
+}
+
+
+
+header h1 {
+  font-family: "Source Sans Pro", "gotham-bold", "Open Sans", "Helvetica Neue", "Helvetica", sans-serif;
+  color: #FFF; 
+  font-weight:400;
+  font-size:58px;
+  padding: 20px;
+}
+
+li.user {
+  h1 {
+    font-size:20px;
+    color:#333;
+    text-transform:uppercase;
+    line-height:24px;
+    margin-top:4px;
+    margin-bottom:4px;
+    small {
+      font-size:16px;
+      margin-left:4px;
+      color:#555;
+      font-weight:500;
+    }
+  }
+  p {
+    font-size: 13px;
+    line-height: 1.6;
+    font-weight:400;
+    margin-bottom:0;
+  }
+}
+
+.muted {
+  font-weight: 100;
+  // color: #999;
+}
+
+.bubble span {
+  font-weight:700;
+}
+
+.login-display-name {
+  color:#FFF;
+  font-weight:400;
+}

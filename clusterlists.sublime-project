@@ -1,0 +1,17 @@
+
+{
+    "folders":
+    [
+        {
+            "file_exclude_patterns":
+            [
+                "clusterlists.sublime-workspace"
+            ],
+            "folder_exclude_patterns":
+            [
+                ".meteor"
+            ],
+            "path": "/Users/jordanburgess/Projects/clusterlists"
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+{
+  "packages": {
+    "twitter-api": {
+      "git": "https://github.com/amaygurov/meteor-twitter-api.git",
+      "commit": "70e8567cc3312bfa9fcd43634ee71d624060183f"
+    },
+    "scss": {}
+  }
+}
