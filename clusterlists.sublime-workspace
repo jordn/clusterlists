@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"list",
+				"list_slug"
+			],
+			[
 				"string",
 				"string_length"
 			],
@@ -510,22 +514,64 @@
 			[
 				"i",
 				"italic"
-			],
-			[
-				"style",
-				"font-style"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "client/main.html",
+			"settings":
+			{
+				"buffer_size": 3181,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "client/main.js",
+			"settings":
+			{
+				"buffer_size": 8618,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/methods.js",
+			"settings":
+			{
+				"buffer_size": 11002,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 1230 files for \"people\"\n\n/Users/jordanburgess/Projects/clusterlists/README.md:\n    2  ===\n    3  \n    4: This a web app to sort the people you follow on Twitter into lists. It is made in [Meteor](http://meteor.com).\n    5  \n    6  You can see the live site at [ClusterLists.com](http://clusterlists.com)\n\n/Users/jordanburgess/Projects/clusterlists/client/main.js:\n  120  'click #add-list': function (event) {\n  121    event.preventDefault;\n  122:   var list_name = window.prompt(\"What would you like to call the list\", \"People I secretly fancy\");\n  123    if (list_name) {\n  124      Meteor.call('AddList', list_name, function (error, result) {\n\n/Users/jordanburgess/Projects/clusterlists/packages/scss/.build/plugin.meteor-scss.os.osx.x86_64/npm/meteor-scss/plugin/node_modules/node-sass/package.json:\n   56      \"jscoverage\": \"~0.3.8\"\n   57    },\n   58:   \"readme\": \"##node-sass\\n\\n[![Build Status](https://secure.travis-ci.org/andrew/node-sass.png?branch=master)](https://travis-ci.org/andrew/node-sass)\\n[![NPM version](https://badge.fury.io/js/node-sass.png)](http://badge.fury.io/js/node-sass)\\n[![Dependency Status](https://david-dm.org/andrew/node-sass.png?theme=shields.io)](https://david-dm.org/andrew/node-sass)\\n[![devDependency Status](https://david-dm.org/andrew/node-sass/dev-status.png?theme=shields.io)](https://david-dm.org/andrew/node-sass#info=devDependencies)\\n[![Coverage Status](https://coveralls.io/repos/andrew/node-sass/badge.png)](https://coveralls.io/r/andrew/node-sass)\\n[![Gitter chat](https://badges.gitter.im/andrew/node-sass.png)](https://gitter.im/andrew/node-sass)\\n\\nNode-sass is a library that provides binding for Node.js to [libsass], the C version of the popular stylesheet preprocessor, Sass.\\n\\nIt allows you to natively compile .scss files to css at incredible speed and automatically via a connect middleware.\\n\\nFind it on npm: <https://npmjs.org/package/node-sass>\\n\\n## Reporting Sass compilation and syntax issues\\n\\nThe [libsass] library is not currently at feature parity with the 3.2 [Ruby Gem](https://github.com/nex3/sass) that most Sass users will use, and has little-to-no support for 3.3 syntax. While we try our best to maintain feature parity with [libsass], we can not enable features that have not been implemented in [libsass] yet.\\n\\nIf you'd like to see what features are still upcoming in [libsass], [Jo Liss](http://twitter.com/jo_liss) has written [a blog post on the subject](http://www.solitr.com/blog/2014/01/state-of-libsass/).\\n\\nPlease check for [issues on the libsass repo](https://github.com/hcatlin/libsass/issues) (as there is a good chance that it may already be an issue there for it), and otherwise [create a new issue there](https://github.com/hcatlin/libsass/issues/new).\\n\\nIf this project is missing an API or command line flag that has been added to [libsass], then please open an issue here. We will then look at updating our [libsass] submodule and create a new release. You can help us create the new release by rebuilding binaries, and then creating a pull request to the [node-sass-binaries](https://github.com/andrew/node-sass-binaries) repo.\\n\\n## Install\\n\\n    npm install node-sass\\n\\n## Usage\\n\\n```javascript\\nvar sass = require('node-sass');\\nsass.render({\\n\\tfile: scss_filename,\\n\\tsuccess: callback\\n\\t[, options..]\\n\\t});\\n// OR\\nvar css = sass.renderSync({\\n\\tdata: scss_content\\n\\t[, options..]\\n});\\n```\\n\\n### Options\\n\\nThe API for using node-sass has changed, so that now there is only one variable - an options hash. Some of these options are optional, and in some circumstances some are mandatory.\\n\\n#### file\\n`file` is a `String` of the path to an `scss` file for [libsass] to render. One of this or `data` options are required, for both render and renderSync.\\n\\n#### data\\n`data` is a `String` containing the scss to be rendered by [libsass]. One of this or `file` options are required, for both render and renderSync. It is recommended that you use the `includePaths` option in conjunction with this, as otherwise [libsass] may have trouble finding files imported via the `@import` directive.\\n\\n#### success\\n`success` is a `Function` to be called upon successful rendering of the scss to css. This option is required but only for the render function. If provided to renderSync it will be ignored.\\n\\n#### error\\n`error` is a `Function` to be called upon occurance of an error when rendering the scss to css. This option is optional, and only applies to the render function. If provided to renderSync it will be ignored.\\n\\n#### includePaths\\n`includePaths` is an `Array` of path `String`s to look for any `@import`ed files. It is recommended that you use this option if you are using the `data` option and have **any** `@import` directives, as otherwise [libsass] may not find your depended-on files.\\n\\n#### imagePath\\n`imagePath` is a `String` that represents the public image path. When using the `image-url()` function in a stylesheet, this path will be prepended to the path you supply. eg. Given an `imagePath` of `/path/to/images`, `background-image: image-url('image.png')` will compile to `background-image: url(\\\"/path/to/images/image.png\\\")`\\n\\n#### outputStyle\\n`outputStyle` is a `String` to determine how the final CSS should be rendered. Its value should be one of `'nested'` or `'compressed'`.\\n[`'expanded'` and `'compact'` are not currently supported by [libsass]]\\n\\n#### sourceComments\\n`sourceComments` is a `String` to determine what debug information is included in the output file. Its value should be one of `'none', 'normal', 'map'`. The default is `'none'`.\\nThe `map` option will create the source map file in your CSS destination.\\n[Important: `souceComments` is only supported when using the `file` option, and does nothing when using `data` flag.]\\n\\n#### sourceMap\\nIf your `sourceComments` option is set to `map`, `sourceMap` allows setting a new path context for the referenced Sass files.\\nThe source map describes a path from your CSS file location, into the the folder where the Sass files are located. In most occasions this will work out-of-the-box but, in some cases, you may need to set a different output.\\n\\n### Examples\\n\\n```javascript\\nvar sass = require('node-sass');\\nsass.render({\\n\\tdata: 'body{background:blue; a{color:black;}}',\\n\\tsuccess: function(css){\\n  \\t\\tconsole.log(css)\\n\\t},\\n\\terror: function(error) {\\n\\t\\tconsole.log(error);\\n\\t},\\n\\tincludePaths: [ 'lib/', 'mod/' ],\\n\\toutputStyle: 'compressed'\\n});\\n// OR\\nconsole.log(sass.renderSync({\\n\\tdata: 'body{background:blue; a{color:black;}}',\\n\\toutputStyle: 'compressed'\\n}));\\n```\\n\\n### Edge-case behaviours\\n\\n* In the case that both `file` and `data` options are set, node-sass will only attempt to honour the `file` directive.\\n\\n## Connect/Express middleware\\n\\nRecompile `.scss` files automatically for connect and express based http servers\\n\\n```javascript\\nvar server = connect.createServer(\\n  sass.middleware({\\n      src: __dirname\\n    , dest: __dirname + '/public'\\n    , debug: true\\n    , outputStyle: 'compressed'\\n    , prefix:  '/prefix'\\n  }),\\n  connect.static('/prefix', __dirname + '/public')\\n);\\n```\\n\\nHeavily inspired by <https://github.com/LearnBoost/stylus>\\n\\n## DocPad Plugin\\n\\n[@jking90](https://github.com/jking90) wrote a [DocPad](http://docpad.org/) plugin that compiles `.scss` files using node-sass: <https://github.com/jking90/docpad-plugin-nodesass>\\n\\n## Grunt extension\\n\\n[@sindresorhus](https://github.com/sindresorhus/) has created a set of grunt tasks based on node-sass: <https://github.com/sindresorhus/grunt-sass>\\n\\n## Gulp extension\\n\\n[@dlmanning](https://github.com/dlmanning/) has created a gulp sass plugin based on node-sass: <https://github.com/dlmanning/gulp-sass>\\n\\n## Harp\\n\\n[@sintaxi](https://github.com/sintaxi)’s Harp web server implicitly compiles `.scss` files using node-sass: <https://github.com/sintaxi/harp>\\n\\n## Meteor plugin\\n\\n[@fourseven](https://github.com/fourseven) has created a meteor plugin based on node-sass: <https://github.com/fourseven/meteor-scss>\\n\\n## Mimosa module\\n\\n[@dbashford](https://github.com/dbashford) has created a Mimosa module for sass which includes node-sass: <https://github.com/dbashford/mimosa-sass>\\n\\n## Example App\\n\\nThere is also an example connect app here: <https://github.com/andrew/node-sass-example>\\n\\n## Rebuilding binaries\\n\\nNode-sass includes pre-compiled binaries for popular platforms, to add a binary for your platform follow these steps:\\n\\nCheck out the project:\\n\\n    git clone https://github.com/andrew/node-sass.git\\n    cd node-sass\\n    git submodule init\\n    git submodule update\\n    npm install\\n    npm install -g node-gyp\\n    node-gyp rebuild\\n\\n## Command Line Interface\\n\\nThe interface for command-line usage is fairly simplistic at this stage, as seen in the following usage section.\\n\\nOutput will be saved with the same name as input SASS file into the current working directory if it's omitted.\\n\\n### Usage\\n `node-sass [options] <input.scss> [<output.css>]`\\n\\n **Options:**\\n\\n      --output-style     CSS output style (nested|expanded|compact|compressed)  [default: \\\"nested\\\"]\\n      --source-comments  Include debug info in output (none|normal|map)         [default: \\\"none\\\"]\\n      --include-path     Path to look for @import-ed files                      [default: cwd]\\n      --help, -h         Print usage info\\n\\n## Post-install Build\\n\\nInstall runs a series of Mocha tests to see if your machine can use the pre-built [libsass] which will save some time during install. If any tests fail it will build from source.\\n\\nIf you know the pre-built version will work and do not want to wait for the tests to run you can skip the tests by setting the environment variable `SKIP_NODE_SASS_TESTS` to true.\\n\\n      SKIP_NODE_SASS_TESTS=true npm install\\n\\n## Maintainers\\n\\nThis module is brought to you and maintained by the following people:\\n\\n* Andrew Nesbitt ([Github](https://github.com/andrew) / [Twitter](https://twitter.com/teabass))\\n* Dean Mao ([Github](https://github.com/deanmao) / [Twitter](https://twitter.com/deanmao))\\n* Brett Wilkins ([Github](https://github.com/bwilkins) / [Twitter](https://twitter.com/bjmaz))\\n* Keith Cirkel ([Github](https://github.com/keithamus) / [Twitter](https://twitter.com/Keithamus))\\n* Laurent Goderre ([Github](https://github.com/laurentgoderre) / [Twitter](https://twitter.com/laurentgoderre))\\n* Nick Schonning ([Github](https://github.com/nschonni) / [Twitter](https://twitter.com/nschonni))\\n* Adam Yeats ([Github](https://github.com/adamyeats) / [Twitter](https://twitter.com/adamyeats))\\n\\n## Contributors\\n\\nWe <3 our contributors! A special thanks to all those who have clocked in some dev time on this project, we really appreciate your hard work. You can find [a full list of those people here.](https://github.com/andrew/node-sass/graphs/contributors)\\n\\n### Note on Patches/Pull Requests\\n\\n * Fork the project.\\n * Make your feature addition or bug fix.\\n * Add documentation if necessary.\\n * Add tests for it. This is important so I don't break it in a future version unintentionally.\\n * Send a pull request. Bonus points for topic branches.\\n\\n## Copyright\\n\\nCopyright (c) 2013 Andrew Nesbitt. See [LICENSE](https://github.com/andrew/node-sass/blob/master/LICENSE) for details.\\n\\n[libsass]: https://github.com/hcatlin/libsass\\n\",\n   59    \"readmeFilename\": \"README.md\",\n   60    \"_id\": \"node-sass@0.8.4\",\n\n/Users/jordanburgess/Projects/clusterlists/packages/scss/.build/plugin.meteor-scss.os.osx.x86_64/npm/meteor-scss/plugin/node_modules/node-sass/README.md:\n  192  ## Maintainers\n  193  \n  194: This module is brought to you and maintained by the following people:\n  195  \n  196  * Andrew Nesbitt ([Github](https://github.com/andrew) / [Twitter](https://twitter.com/teabass))\n  ...\n  204  ## Contributors\n  205  \n  206: We <3 our contributors! A special thanks to all those who have clocked in some dev time on this project, we really appreciate your hard work. You can find [a full list of those people here.](https://github.com/andrew/node-sass/graphs/contributors)\n  207  \n  208  ### Note on Patches/Pull Requests\n\n/Users/jordanburgess/Projects/clusterlists/packages/scss/.build/plugin.meteor-scss.os.osx.x86_64/npm/meteor-scss/plugin/node_modules/node-sass/node_modules/mocha/node_modules/jade/jade.js:\n 1595        function parse(c) {\n 1596          var real = c;\n 1597:         // TODO: remove when people fix \":\"\n 1598          if (colons && ':' == c) c = '=';\n 1599          switch (c) {\n\n/Users/jordanburgess/Projects/clusterlists/packages/scss/.build/plugin.meteor-scss.os.osx.x86_64/npm/meteor-scss/plugin/node_modules/node-sass/node_modules/mocha/node_modules/jade/lib/lexer.js:\n  515        function parse(c) {\n  516          var real = c;\n  517:         // TODO: remove when people fix \":\"\n  518          if (colons && ':' == c) c = '=';\n  519          switch (c) {\n\n/Users/jordanburgess/Projects/clusterlists/packages/scss/.build/plugin.meteor-scss.os.osx.x86_64/npm/meteor-scss/plugin/node_modules/node-sass/node_modules/optimist/index.js:\n    4  \n    5  /*  Hack an instance of Argv with process.argv into Argv\n    6:     so people can do\n    7          require('optimist')(['--beeble=1','-z','zizzle']).argv\n    8      to parse a list of args and\n\n/Users/jordanburgess/Projects/clusterlists/packages/scss/.build/plugin.meteor-scss.os.osx.x86_64/npm/meteor-scss/plugin/node_modules/node-sass/node_modules/optimist/package.json:\n   37      \"node\": \">=0.4\"\n   38    },\n   39:   \"readme\": \"# DEPRECATION NOTICE\\n\\nI don't want to maintain this module anymore since I just use\\n[minimist](https://npmjs.org/package/minimist), the argument parsing engine,\\ndirectly instead nowadays.\\n\\nSee [yargs](https://github.com/chevex/yargs) for the modern, pirate-themed\\nsuccessor to optimist.\\n\\n[![yarrrrrrrgs!](http://i.imgur.com/4WFGVJ9.png)](https://github.com/chevex/yargs)\\n\\nYou should also consider [nomnom](https://github.com/harthur/nomnom).\\n\\noptimist\\n========\\n\\nOptimist is a node.js library for option parsing for people who hate option\\nparsing. More specifically, this module is for people who like all the --bells\\nand -whistlz of program usage but think optstrings are a waste of time.\\n\\nWith optimist, option parsing doesn't have to suck (as much).\\n\\n[![build status](https://secure.travis-ci.org/substack/node-optimist.png)](http://travis-ci.org/substack/node-optimist)\\n\\nexamples\\n========\\n\\nWith Optimist, the options are just a hash! No optstrings attached.\\n-------------------------------------------------------------------\\n\\nxup.js:\\n\\n````javascript\\n#!/usr/bin/env node\\nvar argv = require('optimist').argv;\\n\\nif (argv.rif - 5 * argv.xup > 7.138) {\\n    console.log('Buy more riffiwobbles');\\n}\\nelse {\\n    console.log('Sell the xupptumblers');\\n}\\n````\\n\\n***\\n\\n    $ ./xup.js --rif=55 --xup=9.52\\n    Buy more riffiwobbles\\n    \\n    $ ./xup.js --rif 12 --xup 8.1\\n    Sell the xupptumblers\\n\\n![This one's optimistic.](http://substack.net/images/optimistic.png)\\n\\nBut wait! There's more! You can do short options:\\n-------------------------------------------------\\n \\nshort.js:\\n\\n````javascript\\n#!/usr/bin/env node\\nvar argv = require('optimist').argv;\\nconsole.log('(%d,%d)', argv.x, argv.y);\\n````\\n\\n***\\n\\n    $ ./short.js -x 10 -y 21\\n    (10,21)\\n\\nAnd booleans, both long and short (and grouped):\\n----------------------------------\\n\\nbool.js:\\n\\n````javascript\\n#!/usr/bin/env node\\nvar util = require('util');\\nvar argv = require('optimist').argv;\\n\\nif (argv.s) {\\n    util.print(argv.fr ? 'Le chat dit: ' : 'The cat says: ');\\n}\\nconsole.log(\\n    (argv.fr ? 'miaou' : 'meow') + (argv.p ? '.' : '')\\n);\\n````\\n\\n***\\n\\n    $ ./bool.js -s\\n    The cat says: meow\\n    \\n    $ ./bool.js -sp\\n    The cat says: meow.\\n\\n    $ ./bool.js -sp --fr\\n    Le chat dit: miaou.\\n\\nAnd non-hypenated options too! Just use `argv._`!\\n-------------------------------------------------\\n \\nnonopt.js:\\n\\n````javascript\\n#!/usr/bin/env node\\nvar argv = require('optimist').argv;\\nconsole.log('(%d,%d)', argv.x, argv.y);\\nconsole.log(argv._);\\n````\\n\\n***\\n\\n    $ ./nonopt.js -x 6.82 -y 3.35 moo\\n    (6.82,3.35)\\n    [ 'moo' ]\\n    \\n    $ ./nonopt.js foo -x 0.54 bar -y 1.12 baz\\n    (0.54,1.12)\\n    [ 'foo', 'bar', 'baz' ]\\n\\nPlus, Optimist comes with .usage() and .demand()!\\n-------------------------------------------------\\n\\ndivide.js:\\n\\n````javascript\\n#!/usr/bin/env node\\nvar argv = require('optimist')\\n    .usage('Usage: $0 -x [num] -y [num]')\\n    .demand(['x','y'])\\n    .argv;\\n\\nconsole.log(argv.x / argv.y);\\n````\\n\\n***\\n \\n    $ ./divide.js -x 55 -y 11\\n    5\\n    \\n    $ node ./divide.js -x 4.91 -z 2.51\\n    Usage: node ./divide.js -x [num] -y [num]\\n\\n    Options:\\n      -x  [required]\\n      -y  [required]\\n\\n    Missing required arguments: y\\n\\nEVEN MORE HOLY COW\\n------------------\\n\\ndefault_singles.js:\\n\\n````javascript\\n#!/usr/bin/env node\\nvar argv = require('optimist')\\n    .default('x', 10)\\n    .default('y', 10)\\n    .argv\\n;\\nconsole.log(argv.x + argv.y);\\n````\\n\\n***\\n\\n    $ ./default_singles.js -x 5\\n    15\\n\\ndefault_hash.js:\\n\\n````javascript\\n#!/usr/bin/env node\\nvar argv = require('optimist')\\n    .default({ x : 10, y : 10 })\\n    .argv\\n;\\nconsole.log(argv.x + argv.y);\\n````\\n\\n***\\n\\n    $ ./default_hash.js -y 7\\n    17\\n\\nAnd if you really want to get all descriptive about it...\\n---------------------------------------------------------\\n\\nboolean_single.js\\n\\n````javascript\\n#!/usr/bin/env node\\nvar argv = require('optimist')\\n    .boolean('v')\\n    .argv\\n;\\nconsole.dir(argv);\\n````\\n\\n***\\n\\n    $ ./boolean_single.js -v foo bar baz\\n    true\\n    [ 'bar', 'baz', 'foo' ]\\n\\nboolean_double.js\\n\\n````javascript\\n#!/usr/bin/env node\\nvar argv = require('optimist')\\n    .boolean(['x','y','z'])\\n    .argv\\n;\\nconsole.dir([ argv.x, argv.y, argv.z ]);\\nconsole.dir(argv._);\\n````\\n\\n***\\n\\n    $ ./boolean_double.js -x -z one two three\\n    [ true, false, true ]\\n    [ 'one', 'two', 'three' ]\\n\\nOptimist is here to help...\\n---------------------------\\n\\nYou can describe parameters for help messages and set aliases. Optimist figures\\nout how to format a handy help string automatically.\\n\\nline_count.js\\n\\n````javascript\\n#!/usr/bin/env node\\nvar argv = require('optimist')\\n    .usage('Count the lines in a file.\\\\nUsage: $0')\\n    .demand('f')\\n    .alias('f', 'file')\\n    .describe('f', 'Load a file')\\n    .argv\\n;\\n\\nvar fs = require('fs');\\nvar s = fs.createReadStream(argv.file);\\n\\nvar lines = 0;\\ns.on('data', function (buf) {\\n    lines += buf.toString().match(/\\\\n/g).length;\\n});\\n\\ns.on('end', function () {\\n    console.log(lines);\\n});\\n````\\n\\n***\\n\\n    $ node line_count.js\\n    Count the lines in a file.\\n    Usage: node ./line_count.js\\n\\n    Options:\\n      -f, --file  Load a file  [required]\\n\\n    Missing required arguments: f\\n\\n    $ node line_count.js --file line_count.js \\n    20\\n    \\n    $ node line_count.js -f line_count.js \\n    20\\n\\nmethods\\n=======\\n\\nBy itself,\\n\\n````javascript\\nrequire('optimist').argv\\n`````\\n\\nwill use `process.argv` array to construct the `argv` object.\\n\\nYou can pass in the `process.argv` yourself:\\n\\n````javascript\\nrequire('optimist')([ '-x', '1', '-y', '2' ]).argv\\n````\\n\\nor use .parse() to do the same thing:\\n\\n````javascript\\nrequire('optimist').parse([ '-x', '1', '-y', '2' ])\\n````\\n\\nThe rest of these methods below come in just before the terminating `.argv`.\\n\\n.alias(key, alias)\\n------------------\\n\\nSet key names as equivalent such that updates to a key will propagate to aliases\\nand vice-versa.\\n\\nOptionally `.alias()` can take an object that maps keys to aliases.\\n\\n.default(key, value)\\n--------------------\\n\\nSet `argv[key]` to `value` if no option was specified on `process.argv`.\\n\\nOptionally `.default()` can take an object that maps keys to default values.\\n\\n.demand(key)\\n------------\\n\\nIf `key` is a string, show the usage information and exit if `key` wasn't\\nspecified in `process.argv`.\\n\\nIf `key` is a number, demand at least as many non-option arguments, which show\\nup in `argv._`.\\n\\nIf `key` is an Array, demand each element.\\n\\n.describe(key, desc)\\n--------------------\\n\\nDescribe a `key` for the generated usage information.\\n\\nOptionally `.describe()` can take an object that maps keys to descriptions.\\n\\n.options(key, opt)\\n------------------\\n\\nInstead of chaining together `.alias().demand().default()`, you can specify\\nkeys in `opt` for each of the chainable methods.\\n\\nFor example:\\n\\n````javascript\\nvar argv = require('optimist')\\n    .options('f', {\\n        alias : 'file',\\n        default : '/etc/passwd',\\n    })\\n    .argv\\n;\\n````\\n\\nis the same as\\n\\n````javascript\\nvar argv = require('optimist')\\n    .alias('f', 'file')\\n    .default('f', '/etc/passwd')\\n    .argv\\n;\\n````\\n\\nOptionally `.options()` can take an object that maps keys to `opt` parameters.\\n\\n.usage(message)\\n---------------\\n\\nSet a usage message to show which commands to use. Inside `message`, the string\\n`$0` will get interpolated to the current script name or node command for the\\npresent script similar to how `$0` works in bash or perl.\\n\\n.check(fn)\\n----------\\n\\nCheck that certain conditions are met in the provided arguments.\\n\\nIf `fn` throws or returns `false`, show the thrown error, usage information, and\\nexit.\\n\\n.boolean(key)\\n-------------\\n\\nInterpret `key` as a boolean. If a non-flag option follows `key` in\\n`process.argv`, that string won't get set as the value of `key`.\\n\\nIf `key` never shows up as a flag in `process.arguments`, `argv[key]` will be\\n`false`.\\n\\nIf `key` is an Array, interpret all the elements as booleans.\\n\\n.string(key)\\n------------\\n\\nTell the parser logic not to interpret `key` as a number or boolean.\\nThis can be useful if you need to preserve leading zeros in an input.\\n\\nIf `key` is an Array, interpret all the elements as strings.\\n\\n.wrap(columns)\\n--------------\\n\\nFormat usage output to wrap at `columns` many columns.\\n\\n.help()\\n-------\\n\\nReturn the generated usage string.\\n\\n.showHelp(fn=console.error)\\n---------------------------\\n\\nPrint the usage data using `fn` for printing.\\n\\n.parse(args)\\n------------\\n\\nParse `args` instead of `process.argv`. Returns the `argv` object.\\n\\n.argv\\n-----\\n\\nGet the arguments as a plain old object.\\n\\nArguments without a corresponding flag show up in the `argv._` array.\\n\\nThe script name or node command is available at `argv.$0` similarly to how `$0`\\nworks in bash or perl.\\n\\nparsing tricks\\n==============\\n\\nstop parsing\\n------------\\n\\nUse `--` to stop parsing flags and stuff the remainder into `argv._`.\\n\\n    $ node examples/reflect.js -a 1 -b 2 -- -c 3 -d 4\\n    { _: [ '-c', '3', '-d', '4' ],\\n      '$0': 'node ./examples/reflect.js',\\n      a: 1,\\n      b: 2 }\\n\\nnegate fields\\n-------------\\n\\nIf you want to explicity set a field to false instead of just leaving it\\nundefined or to override a default you can do `--no-key`.\\n\\n    $ node examples/reflect.js -a --no-b\\n    { _: [],\\n      '$0': 'node ./examples/reflect.js',\\n      a: true,\\n      b: false }\\n\\nnumbers\\n-------\\n\\nEvery argument that looks like a number (`!isNaN(Number(arg))`) is converted to\\none. This way you can just `net.createConnection(argv.port)` and you can add\\nnumbers out of `argv` with `+` without having that mean concatenation,\\nwhich is super frustrating.\\n\\nduplicates\\n----------\\n\\nIf you specify a flag multiple times it will get turned into an array containing\\nall the values in order.\\n\\n    $ node examples/reflect.js -x 5 -x 8 -x 0\\n    { _: [],\\n      '$0': 'node ./examples/reflect.js',\\n        x: [ 5, 8, 0 ] }\\n\\ndot notation\\n------------\\n\\nWhen you use dots (`.`s) in argument names, an implicit object path is assumed.\\nThis lets you organize arguments into nested objects.\\n\\n     $ node examples/reflect.js --foo.bar.baz=33 --foo.quux=5\\n     { _: [],\\n       '$0': 'node ./examples/reflect.js',\\n         foo: { bar: { baz: 33 }, quux: 5 } }\\n\\nshort numbers\\n-------------\\n\\nShort numeric `head -n5` style argument work too:\\n\\n    $ node reflect.js -n123 -m456\\n    { '3': true,\\n      '6': true,\\n      _: [],\\n      '$0': 'node ./reflect.js',\\n      n: 123,\\n      m: 456 }\\n\\ninstallation\\n============\\n\\nWith [npm](http://github.com/isaacs/npm), just do:\\n    npm install optimist\\n \\nor clone this project on github:\\n\\n    git clone http://github.com/substack/node-optimist.git\\n\\nTo run the tests with [expresso](http://github.com/visionmedia/expresso),\\njust do:\\n    \\n    expresso\\n\\ninspired By\\n===========\\n\\nThis module is loosely inspired by Perl's\\n[Getopt::Casual](http://search.cpan.org/~photo/Getopt-Casual-0.13.1/Casual.pm).\\n\",\n   40    \"readmeFilename\": \"readme.markdown\",\n   41    \"bugs\": {\n\n/Users/jordanburgess/Projects/clusterlists/packages/scss/.build/plugin.meteor-scss.os.osx.x86_64/npm/meteor-scss/plugin/node_modules/node-sass/node_modules/optimist/readme.markdown:\n   15  ========\n   16  \n   17: Optimist is a node.js library for option parsing for people who hate option\n   18: parsing. More specifically, this module is for people who like all the --bells\n   19  and -whistlz of program usage but think optstrings are a waste of time.\n   20  \n\n/Users/jordanburgess/Projects/clusterlists/packages/scss/.build/plugin.meteor-scss.os.osx.x86_64/npm/meteor-scss/plugin/node_modules/node-sass/node_modules/optimist/node_modules/wordwrap/test/idleness.txt:\n    7  Like most of my generation, I was brought up on the saying: 'Satan finds some mischief for idle hands to do.' Being a highly virtuous child, I believed all that I was told, and acquired a conscience which has kept me working hard down to the present moment. But although my conscience has controlled my actions, my opinions have undergone a revolution. I think that there is far too much work done in the world, that immense harm is caused by the belief that work is virtuous, and that what needs to be preached in modern industrial countries is quite different from what always has been preached. Everyone knows the story of the traveler in Naples who saw twelve beggars lying in the sun (it was before the days of Mussolini), and offered a lira to the laziest of them. Eleven of them jumped up to claim it, so he gave it to the twelfth. this traveler was on the right lines. But in countries which do not enjoy Mediterranean sunshine idleness is more difficult, and a great public propaganda will be required to inaugurate it. I hope that, after reading the following pages, the leaders of the YMCA will start a campaign to induce good young men to do nothing. If so, I shall not have lived in vain.\n    8  \n    9: Before advancing my own arguments for laziness, I must dispose of one which I cannot accept. Whenever a person who already has enough to live on proposes to engage in some everyday kind of job, such as school-teaching or typing, he or she is told that such conduct takes the bread out of other people's mouths, and is therefore wicked. If this argument were valid, it would only be necessary for us all to be idle in order that we should all have our mouths full of bread. What people who say such things forget is that what a man earns he usually spends, and in spending he gives employment. As long as a man spends his income, he puts just as much bread into people's mouths in spending as he takes out of other people's mouths in earning. The real villain, from this point of view, is the man who saves. If he merely puts his savings in a stocking, like the proverbial French peasant, it is obvious that they do not give employment. If he invests his savings, the matter is less obvious, and different cases arise.\n   10  \n   11  One of the commonest things to do with savings is to lend them to some Government. In view of the fact that the bulk of the public expenditure of most civilized Governments consists in payment for past wars or preparation for future wars, the man who lends his money to a Government is in the same position as the bad men in Shakespeare who hire murderers. The net result of the man's economical habits is to increase the armed forces of the State to which he lends his savings. Obviously it would be better if he spent the money, even if he spent it in drink or gambling.\n   ..\n   15  All this is only preliminary. I want to say, in all seriousness, that a great deal of harm is being done in the modern world by belief in the virtuousness of work, and that the road to happiness and prosperity lies in an organized diminution of work.\n   16  \n   17: First of all: what is work? Work is of two kinds: first, altering the position of matter at or near the earth's surface relatively to other such matter; second, telling other people to do so. The first kind is unpleasant and ill paid; the second is pleasant and highly paid. The second kind is capable of indefinite extension: there are not only those who give orders, but those who give advice as to what orders should be given. Usually two opposite kinds of advice are given simultaneously by two organized bodies of men; this is called politics. The skill required for this kind of work is not knowledge of the subjects as to which advice is given, but knowledge of the art of persuasive speaking and writing, i.e. of advertising.\n   18  \n   19  Throughout Europe, though not in America, there is a third class of men, more respected than either of the classes of workers. There are men who, through ownership of land, are able to make others pay for the privilege of being allowed to exist and to work. These landowners are idle, and I might therefore be expected to praise them. Unfortunately, their idleness is only rendered possible by the industry of others; indeed their desire for comfortable idleness is historically the source of the whole gospel of work. The last thing they have ever wished is that others should follow their example.\n   ..\n   25  Modern technique has made it possible to diminish enormously the amount of labor required to secure the necessaries of life for everyone. This was made obvious during the war. At that time all the men in the armed forces, and all the men and women engaged in the production of munitions, all the men and women engaged in spying, war propaganda, or Government offices connected with the war, were withdrawn from productive occupations. In spite of this, the general level of well-being among unskilled wage-earners on the side of the Allies was higher than before or since. The significance of this fact was concealed by finance: borrowing made it appear as if the future was nourishing the present. But that, of course, would have been impossible; a man cannot eat a loaf of bread that does not yet exist. The war showed conclusively that, by the scientific organization of production, it is possible to keep modern populations in fair comfort on a small part of the working capacity of the modern world. If, at the end of the war, the scientific organization, which had been created in order to liberate men for fighting and munition work, had been preserved, and the hours of the week had been cut down to four, all would have been well. Instead of that the old chaos was restored, those whose work was demanded were made to work long hours, and the rest were left to starve as unemployed. Why? Because work is a duty, and a man should not receive wages in proportion to what he has produced, but in proportion to his virtue as exemplified by his industry.\n   26  \n   27: This is the morality of the Slave State, applied in circumstances totally unlike those in which it arose. No wonder the result has been disastrous. Let us take an illustration. Suppose that, at a given moment, a certain number of people are engaged in the manufacture of pins. They make as many pins as the world needs, working (say) eight hours a day. Someone makes an invention by which the same number of men can make twice as many pins: pins are already so cheap that hardly any more will be bought at a lower price. In a sensible world, everybody concerned in the manufacturing of pins would take to working four hours instead of eight, and everything else would go on as before. But in the actual world this would be thought demoralizing. The men still work eight hours, there are too many pins, some employers go bankrupt, and half the men previously concerned in making pins are thrown out of work. There is, in the end, just as much leisure as on the other plan, but half the men are totally idle while half are still overworked. In this way, it is insured that the unavoidable leisure shall cause misery all round instead of being a universal source of happiness. Can anything more insane be imagined?\n   28  \n   29: The idea that the poor should have leisure has always been shocking to the rich. In England, in the early nineteenth century, fifteen hours was the ordinary day's work for a man; children sometimes did as much, and very commonly did twelve hours a day. When meddlesome busybodies suggested that perhaps these hours were rather long, they were told that work kept adults from drink and children from mischief. When I was a child, shortly after urban working men had acquired the vote, certain public holidays were established by law, to the great indignation of the upper classes. I remember hearing an old Duchess say: 'What do the poor want with holidays? They ought to work.' People nowadays are less frank, but the sentiment persists, and is the source of much of our economic confusion.\n   30  \n   31  Let us, for a moment, consider the ethics of work frankly, without superstition. Every human being, of necessity, consumes, in the course of his life, a certain amount of the produce of human labor. Assuming, as we may, that labor is on the whole disagreeable, it is unjust that a man should consume more than he produces. Of course he may provide services rather than commodities, like a medical man, for example; but he should provide something in return for his board and lodging. to this extent, the duty of work must be admitted, but to this extent only.\n   32  \n   33: I shall not dwell upon the fact that, in all modern societies outside the USSR, many people escape even this minimum amount of work, namely all those who inherit money and all those who marry money. I do not think the fact that these people are allowed to be idle is nearly so harmful as the fact that wage-earners are expected to overwork or starve.\n   34  \n   35  If the ordinary wage-earner worked four hours a day, there would be enough for everybody and no unemployment -- assuming a certain very moderate amount of sensible organization. This idea shocks the well-to-do, because they are convinced that the poor would not know how to use so much leisure. In America men often work long hours even when they are well off; such men, naturally, are indignant at the idea of leisure for wage-earners, except as the grim punishment of unemployment; in fact, they dislike leisure even for their sons. Oddly enough, while they wish their sons to work so hard as to have no time to be civilized, they do not mind their wives and daughters having no work at all. the snobbish admiration of uselessness, which, in an aristocratic society, extends to both sexes, is, under a plutocracy, confined to women; this, however, does not make it any more in agreement with common sense.\n   ..\n   43  For the present, possibly, this is all to the good. A large country, full of natural resources, awaits development, and has has to be developed with very little use of credit. In these circumstances, hard work is necessary, and is likely to bring a great reward. But what will happen when the point has been reached where everybody could be comfortable without working long hours?\n   44  \n   45: In the West, we have various ways of dealing with this problem. We have no attempt at economic justice, so that a large proportion of the total produce goes to a small minority of the population, many of whom do no work at all. Owing to the absence of any central control over production, we produce hosts of things that are not wanted. We keep a large percentage of the working population idle, because we can dispense with their labor by making the others overwork. When all these methods prove inadequate, we have a war: we cause a number of people to manufacture high explosives, and a number of others to explode them, as if we were children who had just discovered fireworks. By a combination of all these devices we manage, though with difficulty, to keep alive the notion that a great deal of severe manual work must be the lot of the average man.\n   46  \n   47  In Russia, owing to more economic justice and central control over production, the problem will have to be differently solved. the rational solution would be, as soon as the necessaries and elementary comforts can be provided for all, to reduce the hours of labor gradually, allowing a popular vote to decide, at each stage, whether more leisure or more goods were to be preferred. But, having taught the supreme virtue of hard work, it is difficult to see how the authorities can aim at a paradise in which there will be much leisure and little work. It seems more likely that they will find continually fresh schemes, by which present leisure is to be sacrificed to future productivity. I read recently of an ingenious plan put forward by Russian engineers, for making the White Sea and the northern coasts of Siberia warm, by putting a dam across the Kara Sea. An admirable project, but liable to postpone proletarian comfort for a generation, while the nobility of toil is being displayed amid the ice-fields and snowstorms of the Arctic Ocean. This sort of thing, if it happens, will be the result of regarding the virtue of hard work as an end in itself, rather than as a means to a state of affairs in which it is no longer needed.\n\n/Users/jordanburgess/Projects/clusterlists/packages/scss/.npm/plugin/meteor-scss/node_modules/node-sass/package.json:\n   56      \"jscoverage\": \"~0.3.8\"\n   57    },\n   58:   \"readme\": \"##node-sass\\n\\n[![Build Status](https://secure.travis-ci.org/andrew/node-sass.png?branch=master)](https://travis-ci.org/andrew/node-sass)\\n[![NPM version](https://badge.fury.io/js/node-sass.png)](http://badge.fury.io/js/node-sass)\\n[![Dependency Status](https://david-dm.org/andrew/node-sass.png?theme=shields.io)](https://david-dm.org/andrew/node-sass)\\n[![devDependency Status](https://david-dm.org/andrew/node-sass/dev-status.png?theme=shields.io)](https://david-dm.org/andrew/node-sass#info=devDependencies)\\n[![Coverage Status](https://coveralls.io/repos/andrew/node-sass/badge.png)](https://coveralls.io/r/andrew/node-sass)\\n[![Gitter chat](https://badges.gitter.im/andrew/node-sass.png)](https://gitter.im/andrew/node-sass)\\n\\nNode-sass is a library that provides binding for Node.js to [libsass], the C version of the popular stylesheet preprocessor, Sass.\\n\\nIt allows you to natively compile .scss files to css at incredible speed and automatically via a connect middleware.\\n\\nFind it on npm: <https://npmjs.org/package/node-sass>\\n\\n## Reporting Sass compilation and syntax issues\\n\\nThe [libsass] library is not currently at feature parity with the 3.2 [Ruby Gem](https://github.com/nex3/sass) that most Sass users will use, and has little-to-no support for 3.3 syntax. While we try our best to maintain feature parity with [libsass], we can not enable features that have not been implemented in [libsass] yet.\\n\\nIf you'd like to see what features are still upcoming in [libsass], [Jo Liss](http://twitter.com/jo_liss) has written [a blog post on the subject](http://www.solitr.com/blog/2014/01/state-of-libsass/).\\n\\nPlease check for [issues on the libsass repo](https://github.com/hcatlin/libsass/issues) (as there is a good chance that it may already be an issue there for it), and otherwise [create a new issue there](https://github.com/hcatlin/libsass/issues/new).\\n\\nIf this project is missing an API or command line flag that has been added to [libsass], then please open an issue here. We will then look at updating our [libsass] submodule and create a new release. You can help us create the new release by rebuilding binaries, and then creating a pull request to the [node-sass-binaries](https://github.com/andrew/node-sass-binaries) repo.\\n\\n## Install\\n\\n    npm install node-sass\\n\\n## Usage\\n\\n```javascript\\nvar sass = require('node-sass');\\nsass.render({\\n\\tfile: scss_filename,\\n\\tsuccess: callback\\n\\t[, options..]\\n\\t});\\n// OR\\nvar css = sass.renderSync({\\n\\tdata: scss_content\\n\\t[, options..]\\n});\\n```\\n\\n### Options\\n\\nThe API for using node-sass has changed, so that now there is only one variable - an options hash. Some of these options are optional, and in some circumstances some are mandatory.\\n\\n#### file\\n`file` is a `String` of the path to an `scss` file for [libsass] to render. One of this or `data` options are required, for both render and renderSync.\\n\\n#### data\\n`data` is a `String` containing the scss to be rendered by [libsass]. One of this or `file` options are required, for both render and renderSync. It is recommended that you use the `includePaths` option in conjunction with this, as otherwise [libsass] may have trouble finding files imported via the `@import` directive.\\n\\n#### success\\n`success` is a `Function` to be called upon successful rendering of the scss to css. This option is required but only for the render function. If provided to renderSync it will be ignored.\\n\\n#### error\\n`error` is a `Function` to be called upon occurance of an error when rendering the scss to css. This option is optional, and only applies to the render function. If provided to renderSync it will be ignored.\\n\\n#### includePaths\\n`includePaths` is an `Array` of path `String`s to look for any `@import`ed files. It is recommended that you use this option if you are using the `data` option and have **any** `@import` directives, as otherwise [libsass] may not find your depended-on files.\\n\\n#### imagePath\\n`imagePath` is a `String` that represents the public image path. When using the `image-url()` function in a stylesheet, this path will be prepended to the path you supply. eg. Given an `imagePath` of `/path/to/images`, `background-image: image-url('image.png')` will compile to `background-image: url(\\\"/path/to/images/image.png\\\")`\\n\\n#### outputStyle\\n`outputStyle` is a `String` to determine how the final CSS should be rendered. Its value should be one of `'nested'` or `'compressed'`.\\n[`'expanded'` and `'compact'` are not currently supported by [libsass]]\\n\\n#### sourceComments\\n`sourceComments` is a `String` to determine what debug information is included in the output file. Its value should be one of `'none', 'normal', 'map'`. The default is `'none'`.\\nThe `map` option will create the source map file in your CSS destination.\\n[Important: `souceComments` is only supported when using the `file` option, and does nothing when using `data` flag.]\\n\\n#### sourceMap\\nIf your `sourceComments` option is set to `map`, `sourceMap` allows setting a new path context for the referenced Sass files.\\nThe source map describes a path from your CSS file location, into the the folder where the Sass files are located. In most occasions this will work out-of-the-box but, in some cases, you may need to set a different output.\\n\\n### Examples\\n\\n```javascript\\nvar sass = require('node-sass');\\nsass.render({\\n\\tdata: 'body{background:blue; a{color:black;}}',\\n\\tsuccess: function(css){\\n  \\t\\tconsole.log(css)\\n\\t},\\n\\terror: function(error) {\\n\\t\\tconsole.log(error);\\n\\t},\\n\\tincludePaths: [ 'lib/', 'mod/' ],\\n\\toutputStyle: 'compressed'\\n});\\n// OR\\nconsole.log(sass.renderSync({\\n\\tdata: 'body{background:blue; a{color:black;}}',\\n\\toutputStyle: 'compressed'\\n}));\\n```\\n\\n### Edge-case behaviours\\n\\n* In the case that both `file` and `data` options are set, node-sass will only attempt to honour the `file` directive.\\n\\n## Connect/Express middleware\\n\\nRecompile `.scss` files automatically for connect and express based http servers\\n\\n```javascript\\nvar server = connect.createServer(\\n  sass.middleware({\\n      src: __dirname\\n    , dest: __dirname + '/public'\\n    , debug: true\\n    , outputStyle: 'compressed'\\n    , prefix:  '/prefix'\\n  }),\\n  connect.static('/prefix', __dirname + '/public')\\n);\\n```\\n\\nHeavily inspired by <https://github.com/LearnBoost/stylus>\\n\\n## DocPad Plugin\\n\\n[@jking90](https://github.com/jking90) wrote a [DocPad](http://docpad.org/) plugin that compiles `.scss` files using node-sass: <https://github.com/jking90/docpad-plugin-nodesass>\\n\\n## Grunt extension\\n\\n[@sindresorhus](https://github.com/sindresorhus/) has created a set of grunt tasks based on node-sass: <https://github.com/sindresorhus/grunt-sass>\\n\\n## Gulp extension\\n\\n[@dlmanning](https://github.com/dlmanning/) has created a gulp sass plugin based on node-sass: <https://github.com/dlmanning/gulp-sass>\\n\\n## Harp\\n\\n[@sintaxi](https://github.com/sintaxi)’s Harp web server implicitly compiles `.scss` files using node-sass: <https://github.com/sintaxi/harp>\\n\\n## Meteor plugin\\n\\n[@fourseven](https://github.com/fourseven) has created a meteor plugin based on node-sass: <https://github.com/fourseven/meteor-scss>\\n\\n## Mimosa module\\n\\n[@dbashford](https://github.com/dbashford) has created a Mimosa module for sass which includes node-sass: <https://github.com/dbashford/mimosa-sass>\\n\\n## Example App\\n\\nThere is also an example connect app here: <https://github.com/andrew/node-sass-example>\\n\\n## Rebuilding binaries\\n\\nNode-sass includes pre-compiled binaries for popular platforms, to add a binary for your platform follow these steps:\\n\\nCheck out the project:\\n\\n    git clone https://github.com/andrew/node-sass.git\\n    cd node-sass\\n    git submodule init\\n    git submodule update\\n    npm install\\n    npm install -g node-gyp\\n    node-gyp rebuild\\n\\n## Command Line Interface\\n\\nThe interface for command-line usage is fairly simplistic at this stage, as seen in the following usage section.\\n\\nOutput will be saved with the same name as input SASS file into the current working directory if it's omitted.\\n\\n### Usage\\n `node-sass [options] <input.scss> [<output.css>]`\\n\\n **Options:**\\n\\n      --output-style     CSS output style (nested|expanded|compact|compressed)  [default: \\\"nested\\\"]\\n      --source-comments  Include debug info in output (none|normal|map)         [default: \\\"none\\\"]\\n      --include-path     Path to look for @import-ed files                      [default: cwd]\\n      --help, -h         Print usage info\\n\\n## Post-install Build\\n\\nInstall runs a series of Mocha tests to see if your machine can use the pre-built [libsass] which will save some time during install. If any tests fail it will build from source.\\n\\nIf you know the pre-built version will work and do not want to wait for the tests to run you can skip the tests by setting the environment variable `SKIP_NODE_SASS_TESTS` to true.\\n\\n      SKIP_NODE_SASS_TESTS=true npm install\\n\\n## Maintainers\\n\\nThis module is brought to you and maintained by the following people:\\n\\n* Andrew Nesbitt ([Github](https://github.com/andrew) / [Twitter](https://twitter.com/teabass))\\n* Dean Mao ([Github](https://github.com/deanmao) / [Twitter](https://twitter.com/deanmao))\\n* Brett Wilkins ([Github](https://github.com/bwilkins) / [Twitter](https://twitter.com/bjmaz))\\n* Keith Cirkel ([Github](https://github.com/keithamus) / [Twitter](https://twitter.com/Keithamus))\\n* Laurent Goderre ([Github](https://github.com/laurentgoderre) / [Twitter](https://twitter.com/laurentgoderre))\\n* Nick Schonning ([Github](https://github.com/nschonni) / [Twitter](https://twitter.com/nschonni))\\n* Adam Yeats ([Github](https://github.com/adamyeats) / [Twitter](https://twitter.com/adamyeats))\\n\\n## Contributors\\n\\nWe <3 our contributors! A special thanks to all those who have clocked in some dev time on this project, we really appreciate your hard work. You can find [a full list of those people here.](https://github.com/andrew/node-sass/graphs/contributors)\\n\\n### Note on Patches/Pull Requests\\n\\n * Fork the project.\\n * Make your feature addition or bug fix.\\n * Add documentation if necessary.\\n * Add tests for it. This is important so I don't break it in a future version unintentionally.\\n * Send a pull request. Bonus points for topic branches.\\n\\n## Copyright\\n\\nCopyright (c) 2013 Andrew Nesbitt. See [LICENSE](https://github.com/andrew/node-sass/blob/master/LICENSE) for details.\\n\\n[libsass]: https://github.com/hcatlin/libsass\\n\",\n   59    \"readmeFilename\": \"README.md\",\n   60    \"_id\": \"node-sass@0.8.4\",\n\n/Users/jordanburgess/Projects/clusterlists/packages/scss/.npm/plugin/meteor-scss/node_modules/node-sass/README.md:\n  192  ## Maintainers\n  193  \n  194: This module is brought to you and maintained by the following people:\n  195  \n  196  * Andrew Nesbitt ([Github](https://github.com/andrew) / [Twitter](https://twitter.com/teabass))\n  ...\n  204  ## Contributors\n  205  \n  206: We <3 our contributors! A special thanks to all those who have clocked in some dev time on this project, we really appreciate your hard work. You can find [a full list of those people here.](https://github.com/andrew/node-sass/graphs/contributors)\n  207  \n  208  ### Note on Patches/Pull Requests\n\n/Users/jordanburgess/Projects/clusterlists/packages/scss/.npm/plugin/meteor-scss/node_modules/node-sass/node_modules/mocha/node_modules/jade/jade.js:\n 1595        function parse(c) {\n 1596          var real = c;\n 1597:         // TODO: remove when people fix \":\"\n 1598          if (colons && ':' == c) c = '=';\n 1599          switch (c) {\n\n/Users/jordanburgess/Projects/clusterlists/packages/scss/.npm/plugin/meteor-scss/node_modules/node-sass/node_modules/mocha/node_modules/jade/lib/lexer.js:\n  515        function parse(c) {\n  516          var real = c;\n  517:         // TODO: remove when people fix \":\"\n  518          if (colons && ':' == c) c = '=';\n  519          switch (c) {\n\n/Users/jordanburgess/Projects/clusterlists/packages/scss/.npm/plugin/meteor-scss/node_modules/node-sass/node_modules/optimist/index.js:\n    4  \n    5  /*  Hack an instance of Argv with process.argv into Argv\n    6:     so people can do\n    7          require('optimist')(['--beeble=1','-z','zizzle']).argv\n    8      to parse a list of args and\n\n/Users/jordanburgess/Projects/clusterlists/packages/scss/.npm/plugin/meteor-scss/node_modules/node-sass/node_modules/optimist/package.json:\n   37      \"node\": \">=0.4\"\n   38    },\n   39:   \"readme\": \"# DEPRECATION NOTICE\\n\\nI don't want to maintain this module anymore since I just use\\n[minimist](https://npmjs.org/package/minimist), the argument parsing engine,\\ndirectly instead nowadays.\\n\\nSee [yargs](https://github.com/chevex/yargs) for the modern, pirate-themed\\nsuccessor to optimist.\\n\\n[![yarrrrrrrgs!](http://i.imgur.com/4WFGVJ9.png)](https://github.com/chevex/yargs)\\n\\nYou should also consider [nomnom](https://github.com/harthur/nomnom).\\n\\noptimist\\n========\\n\\nOptimist is a node.js library for option parsing for people who hate option\\nparsing. More specifically, this module is for people who like all the --bells\\nand -whistlz of program usage but think optstrings are a waste of time.\\n\\nWith optimist, option parsing doesn't have to suck (as much).\\n\\n[![build status](https://secure.travis-ci.org/substack/node-optimist.png)](http://travis-ci.org/substack/node-optimist)\\n\\nexamples\\n========\\n\\nWith Optimist, the options are just a hash! No optstrings attached.\\n-------------------------------------------------------------------\\n\\nxup.js:\\n\\n````javascript\\n#!/usr/bin/env node\\nvar argv = require('optimist').argv;\\n\\nif (argv.rif - 5 * argv.xup > 7.138) {\\n    console.log('Buy more riffiwobbles');\\n}\\nelse {\\n    console.log('Sell the xupptumblers');\\n}\\n````\\n\\n***\\n\\n    $ ./xup.js --rif=55 --xup=9.52\\n    Buy more riffiwobbles\\n    \\n    $ ./xup.js --rif 12 --xup 8.1\\n    Sell the xupptumblers\\n\\n![This one's optimistic.](http://substack.net/images/optimistic.png)\\n\\nBut wait! There's more! You can do short options:\\n-------------------------------------------------\\n \\nshort.js:\\n\\n````javascript\\n#!/usr/bin/env node\\nvar argv = require('optimist').argv;\\nconsole.log('(%d,%d)', argv.x, argv.y);\\n````\\n\\n***\\n\\n    $ ./short.js -x 10 -y 21\\n    (10,21)\\n\\nAnd booleans, both long and short (and grouped):\\n----------------------------------\\n\\nbool.js:\\n\\n````javascript\\n#!/usr/bin/env node\\nvar util = require('util');\\nvar argv = require('optimist').argv;\\n\\nif (argv.s) {\\n    util.print(argv.fr ? 'Le chat dit: ' : 'The cat says: ');\\n}\\nconsole.log(\\n    (argv.fr ? 'miaou' : 'meow') + (argv.p ? '.' : '')\\n);\\n````\\n\\n***\\n\\n    $ ./bool.js -s\\n    The cat says: meow\\n    \\n    $ ./bool.js -sp\\n    The cat says: meow.\\n\\n    $ ./bool.js -sp --fr\\n    Le chat dit: miaou.\\n\\nAnd non-hypenated options too! Just use `argv._`!\\n-------------------------------------------------\\n \\nnonopt.js:\\n\\n````javascript\\n#!/usr/bin/env node\\nvar argv = require('optimist').argv;\\nconsole.log('(%d,%d)', argv.x, argv.y);\\nconsole.log(argv._);\\n````\\n\\n***\\n\\n    $ ./nonopt.js -x 6.82 -y 3.35 moo\\n    (6.82,3.35)\\n    [ 'moo' ]\\n    \\n    $ ./nonopt.js foo -x 0.54 bar -y 1.12 baz\\n    (0.54,1.12)\\n    [ 'foo', 'bar', 'baz' ]\\n\\nPlus, Optimist comes with .usage() and .demand()!\\n-------------------------------------------------\\n\\ndivide.js:\\n\\n````javascript\\n#!/usr/bin/env node\\nvar argv = require('optimist')\\n    .usage('Usage: $0 -x [num] -y [num]')\\n    .demand(['x','y'])\\n    .argv;\\n\\nconsole.log(argv.x / argv.y);\\n````\\n\\n***\\n \\n    $ ./divide.js -x 55 -y 11\\n    5\\n    \\n    $ node ./divide.js -x 4.91 -z 2.51\\n    Usage: node ./divide.js -x [num] -y [num]\\n\\n    Options:\\n      -x  [required]\\n      -y  [required]\\n\\n    Missing required arguments: y\\n\\nEVEN MORE HOLY COW\\n------------------\\n\\ndefault_singles.js:\\n\\n````javascript\\n#!/usr/bin/env node\\nvar argv = require('optimist')\\n    .default('x', 10)\\n    .default('y', 10)\\n    .argv\\n;\\nconsole.log(argv.x + argv.y);\\n````\\n\\n***\\n\\n    $ ./default_singles.js -x 5\\n    15\\n\\ndefault_hash.js:\\n\\n````javascript\\n#!/usr/bin/env node\\nvar argv = require('optimist')\\n    .default({ x : 10, y : 10 })\\n    .argv\\n;\\nconsole.log(argv.x + argv.y);\\n````\\n\\n***\\n\\n    $ ./default_hash.js -y 7\\n    17\\n\\nAnd if you really want to get all descriptive about it...\\n---------------------------------------------------------\\n\\nboolean_single.js\\n\\n````javascript\\n#!/usr/bin/env node\\nvar argv = require('optimist')\\n    .boolean('v')\\n    .argv\\n;\\nconsole.dir(argv);\\n````\\n\\n***\\n\\n    $ ./boolean_single.js -v foo bar baz\\n    true\\n    [ 'bar', 'baz', 'foo' ]\\n\\nboolean_double.js\\n\\n````javascript\\n#!/usr/bin/env node\\nvar argv = require('optimist')\\n    .boolean(['x','y','z'])\\n    .argv\\n;\\nconsole.dir([ argv.x, argv.y, argv.z ]);\\nconsole.dir(argv._);\\n````\\n\\n***\\n\\n    $ ./boolean_double.js -x -z one two three\\n    [ true, false, true ]\\n    [ 'one', 'two', 'three' ]\\n\\nOptimist is here to help...\\n---------------------------\\n\\nYou can describe parameters for help messages and set aliases. Optimist figures\\nout how to format a handy help string automatically.\\n\\nline_count.js\\n\\n````javascript\\n#!/usr/bin/env node\\nvar argv = require('optimist')\\n    .usage('Count the lines in a file.\\\\nUsage: $0')\\n    .demand('f')\\n    .alias('f', 'file')\\n    .describe('f', 'Load a file')\\n    .argv\\n;\\n\\nvar fs = require('fs');\\nvar s = fs.createReadStream(argv.file);\\n\\nvar lines = 0;\\ns.on('data', function (buf) {\\n    lines += buf.toString().match(/\\\\n/g).length;\\n});\\n\\ns.on('end', function () {\\n    console.log(lines);\\n});\\n````\\n\\n***\\n\\n    $ node line_count.js\\n    Count the lines in a file.\\n    Usage: node ./line_count.js\\n\\n    Options:\\n      -f, --file  Load a file  [required]\\n\\n    Missing required arguments: f\\n\\n    $ node line_count.js --file line_count.js \\n    20\\n    \\n    $ node line_count.js -f line_count.js \\n    20\\n\\nmethods\\n=======\\n\\nBy itself,\\n\\n````javascript\\nrequire('optimist').argv\\n`````\\n\\nwill use `process.argv` array to construct the `argv` object.\\n\\nYou can pass in the `process.argv` yourself:\\n\\n````javascript\\nrequire('optimist')([ '-x', '1', '-y', '2' ]).argv\\n````\\n\\nor use .parse() to do the same thing:\\n\\n````javascript\\nrequire('optimist').parse([ '-x', '1', '-y', '2' ])\\n````\\n\\nThe rest of these methods below come in just before the terminating `.argv`.\\n\\n.alias(key, alias)\\n------------------\\n\\nSet key names as equivalent such that updates to a key will propagate to aliases\\nand vice-versa.\\n\\nOptionally `.alias()` can take an object that maps keys to aliases.\\n\\n.default(key, value)\\n--------------------\\n\\nSet `argv[key]` to `value` if no option was specified on `process.argv`.\\n\\nOptionally `.default()` can take an object that maps keys to default values.\\n\\n.demand(key)\\n------------\\n\\nIf `key` is a string, show the usage information and exit if `key` wasn't\\nspecified in `process.argv`.\\n\\nIf `key` is a number, demand at least as many non-option arguments, which show\\nup in `argv._`.\\n\\nIf `key` is an Array, demand each element.\\n\\n.describe(key, desc)\\n--------------------\\n\\nDescribe a `key` for the generated usage information.\\n\\nOptionally `.describe()` can take an object that maps keys to descriptions.\\n\\n.options(key, opt)\\n------------------\\n\\nInstead of chaining together `.alias().demand().default()`, you can specify\\nkeys in `opt` for each of the chainable methods.\\n\\nFor example:\\n\\n````javascript\\nvar argv = require('optimist')\\n    .options('f', {\\n        alias : 'file',\\n        default : '/etc/passwd',\\n    })\\n    .argv\\n;\\n````\\n\\nis the same as\\n\\n````javascript\\nvar argv = require('optimist')\\n    .alias('f', 'file')\\n    .default('f', '/etc/passwd')\\n    .argv\\n;\\n````\\n\\nOptionally `.options()` can take an object that maps keys to `opt` parameters.\\n\\n.usage(message)\\n---------------\\n\\nSet a usage message to show which commands to use. Inside `message`, the string\\n`$0` will get interpolated to the current script name or node command for the\\npresent script similar to how `$0` works in bash or perl.\\n\\n.check(fn)\\n----------\\n\\nCheck that certain conditions are met in the provided arguments.\\n\\nIf `fn` throws or returns `false`, show the thrown error, usage information, and\\nexit.\\n\\n.boolean(key)\\n-------------\\n\\nInterpret `key` as a boolean. If a non-flag option follows `key` in\\n`process.argv`, that string won't get set as the value of `key`.\\n\\nIf `key` never shows up as a flag in `process.arguments`, `argv[key]` will be\\n`false`.\\n\\nIf `key` is an Array, interpret all the elements as booleans.\\n\\n.string(key)\\n------------\\n\\nTell the parser logic not to interpret `key` as a number or boolean.\\nThis can be useful if you need to preserve leading zeros in an input.\\n\\nIf `key` is an Array, interpret all the elements as strings.\\n\\n.wrap(columns)\\n--------------\\n\\nFormat usage output to wrap at `columns` many columns.\\n\\n.help()\\n-------\\n\\nReturn the generated usage string.\\n\\n.showHelp(fn=console.error)\\n---------------------------\\n\\nPrint the usage data using `fn` for printing.\\n\\n.parse(args)\\n------------\\n\\nParse `args` instead of `process.argv`. Returns the `argv` object.\\n\\n.argv\\n-----\\n\\nGet the arguments as a plain old object.\\n\\nArguments without a corresponding flag show up in the `argv._` array.\\n\\nThe script name or node command is available at `argv.$0` similarly to how `$0`\\nworks in bash or perl.\\n\\nparsing tricks\\n==============\\n\\nstop parsing\\n------------\\n\\nUse `--` to stop parsing flags and stuff the remainder into `argv._`.\\n\\n    $ node examples/reflect.js -a 1 -b 2 -- -c 3 -d 4\\n    { _: [ '-c', '3', '-d', '4' ],\\n      '$0': 'node ./examples/reflect.js',\\n      a: 1,\\n      b: 2 }\\n\\nnegate fields\\n-------------\\n\\nIf you want to explicity set a field to false instead of just leaving it\\nundefined or to override a default you can do `--no-key`.\\n\\n    $ node examples/reflect.js -a --no-b\\n    { _: [],\\n      '$0': 'node ./examples/reflect.js',\\n      a: true,\\n      b: false }\\n\\nnumbers\\n-------\\n\\nEvery argument that looks like a number (`!isNaN(Number(arg))`) is converted to\\none. This way you can just `net.createConnection(argv.port)` and you can add\\nnumbers out of `argv` with `+` without having that mean concatenation,\\nwhich is super frustrating.\\n\\nduplicates\\n----------\\n\\nIf you specify a flag multiple times it will get turned into an array containing\\nall the values in order.\\n\\n    $ node examples/reflect.js -x 5 -x 8 -x 0\\n    { _: [],\\n      '$0': 'node ./examples/reflect.js',\\n        x: [ 5, 8, 0 ] }\\n\\ndot notation\\n------------\\n\\nWhen you use dots (`.`s) in argument names, an implicit object path is assumed.\\nThis lets you organize arguments into nested objects.\\n\\n     $ node examples/reflect.js --foo.bar.baz=33 --foo.quux=5\\n     { _: [],\\n       '$0': 'node ./examples/reflect.js',\\n         foo: { bar: { baz: 33 }, quux: 5 } }\\n\\nshort numbers\\n-------------\\n\\nShort numeric `head -n5` style argument work too:\\n\\n    $ node reflect.js -n123 -m456\\n    { '3': true,\\n      '6': true,\\n      _: [],\\n      '$0': 'node ./reflect.js',\\n      n: 123,\\n      m: 456 }\\n\\ninstallation\\n============\\n\\nWith [npm](http://github.com/isaacs/npm), just do:\\n    npm install optimist\\n \\nor clone this project on github:\\n\\n    git clone http://github.com/substack/node-optimist.git\\n\\nTo run the tests with [expresso](http://github.com/visionmedia/expresso),\\njust do:\\n    \\n    expresso\\n\\ninspired By\\n===========\\n\\nThis module is loosely inspired by Perl's\\n[Getopt::Casual](http://search.cpan.org/~photo/Getopt-Casual-0.13.1/Casual.pm).\\n\",\n   40    \"readmeFilename\": \"readme.markdown\",\n   41    \"bugs\": {\n\n/Users/jordanburgess/Projects/clusterlists/packages/scss/.npm/plugin/meteor-scss/node_modules/node-sass/node_modules/optimist/readme.markdown:\n   15  ========\n   16  \n   17: Optimist is a node.js library for option parsing for people who hate option\n   18: parsing. More specifically, this module is for people who like all the --bells\n   19  and -whistlz of program usage but think optstrings are a waste of time.\n   20  \n\n/Users/jordanburgess/Projects/clusterlists/packages/scss/.npm/plugin/meteor-scss/node_modules/node-sass/node_modules/optimist/node_modules/wordwrap/test/idleness.txt:\n    7  Like most of my generation, I was brought up on the saying: 'Satan finds some mischief for idle hands to do.' Being a highly virtuous child, I believed all that I was told, and acquired a conscience which has kept me working hard down to the present moment. But although my conscience has controlled my actions, my opinions have undergone a revolution. I think that there is far too much work done in the world, that immense harm is caused by the belief that work is virtuous, and that what needs to be preached in modern industrial countries is quite different from what always has been preached. Everyone knows the story of the traveler in Naples who saw twelve beggars lying in the sun (it was before the days of Mussolini), and offered a lira to the laziest of them. Eleven of them jumped up to claim it, so he gave it to the twelfth. this traveler was on the right lines. But in countries which do not enjoy Mediterranean sunshine idleness is more difficult, and a great public propaganda will be required to inaugurate it. I hope that, after reading the following pages, the leaders of the YMCA will start a campaign to induce good young men to do nothing. If so, I shall not have lived in vain.\n    8  \n    9: Before advancing my own arguments for laziness, I must dispose of one which I cannot accept. Whenever a person who already has enough to live on proposes to engage in some everyday kind of job, such as school-teaching or typing, he or she is told that such conduct takes the bread out of other people's mouths, and is therefore wicked. If this argument were valid, it would only be necessary for us all to be idle in order that we should all have our mouths full of bread. What people who say such things forget is that what a man earns he usually spends, and in spending he gives employment. As long as a man spends his income, he puts just as much bread into people's mouths in spending as he takes out of other people's mouths in earning. The real villain, from this point of view, is the man who saves. If he merely puts his savings in a stocking, like the proverbial French peasant, it is obvious that they do not give employment. If he invests his savings, the matter is less obvious, and different cases arise.\n   10  \n   11  One of the commonest things to do with savings is to lend them to some Government. In view of the fact that the bulk of the public expenditure of most civilized Governments consists in payment for past wars or preparation for future wars, the man who lends his money to a Government is in the same position as the bad men in Shakespeare who hire murderers. The net result of the man's economical habits is to increase the armed forces of the State to which he lends his savings. Obviously it would be better if he spent the money, even if he spent it in drink or gambling.\n   ..\n   15  All this is only preliminary. I want to say, in all seriousness, that a great deal of harm is being done in the modern world by belief in the virtuousness of work, and that the road to happiness and prosperity lies in an organized diminution of work.\n   16  \n   17: First of all: what is work? Work is of two kinds: first, altering the position of matter at or near the earth's surface relatively to other such matter; second, telling other people to do so. The first kind is unpleasant and ill paid; the second is pleasant and highly paid. The second kind is capable of indefinite extension: there are not only those who give orders, but those who give advice as to what orders should be given. Usually two opposite kinds of advice are given simultaneously by two organized bodies of men; this is called politics. The skill required for this kind of work is not knowledge of the subjects as to which advice is given, but knowledge of the art of persuasive speaking and writing, i.e. of advertising.\n   18  \n   19  Throughout Europe, though not in America, there is a third class of men, more respected than either of the classes of workers. There are men who, through ownership of land, are able to make others pay for the privilege of being allowed to exist and to work. These landowners are idle, and I might therefore be expected to praise them. Unfortunately, their idleness is only rendered possible by the industry of others; indeed their desire for comfortable idleness is historically the source of the whole gospel of work. The last thing they have ever wished is that others should follow their example.\n   ..\n   25  Modern technique has made it possible to diminish enormously the amount of labor required to secure the necessaries of life for everyone. This was made obvious during the war. At that time all the men in the armed forces, and all the men and women engaged in the production of munitions, all the men and women engaged in spying, war propaganda, or Government offices connected with the war, were withdrawn from productive occupations. In spite of this, the general level of well-being among unskilled wage-earners on the side of the Allies was higher than before or since. The significance of this fact was concealed by finance: borrowing made it appear as if the future was nourishing the present. But that, of course, would have been impossible; a man cannot eat a loaf of bread that does not yet exist. The war showed conclusively that, by the scientific organization of production, it is possible to keep modern populations in fair comfort on a small part of the working capacity of the modern world. If, at the end of the war, the scientific organization, which had been created in order to liberate men for fighting and munition work, had been preserved, and the hours of the week had been cut down to four, all would have been well. Instead of that the old chaos was restored, those whose work was demanded were made to work long hours, and the rest were left to starve as unemployed. Why? Because work is a duty, and a man should not receive wages in proportion to what he has produced, but in proportion to his virtue as exemplified by his industry.\n   26  \n   27: This is the morality of the Slave State, applied in circumstances totally unlike those in which it arose. No wonder the result has been disastrous. Let us take an illustration. Suppose that, at a given moment, a certain number of people are engaged in the manufacture of pins. They make as many pins as the world needs, working (say) eight hours a day. Someone makes an invention by which the same number of men can make twice as many pins: pins are already so cheap that hardly any more will be bought at a lower price. In a sensible world, everybody concerned in the manufacturing of pins would take to working four hours instead of eight, and everything else would go on as before. But in the actual world this would be thought demoralizing. The men still work eight hours, there are too many pins, some employers go bankrupt, and half the men previously concerned in making pins are thrown out of work. There is, in the end, just as much leisure as on the other plan, but half the men are totally idle while half are still overworked. In this way, it is insured that the unavoidable leisure shall cause misery all round instead of being a universal source of happiness. Can anything more insane be imagined?\n   28  \n   29: The idea that the poor should have leisure has always been shocking to the rich. In England, in the early nineteenth century, fifteen hours was the ordinary day's work for a man; children sometimes did as much, and very commonly did twelve hours a day. When meddlesome busybodies suggested that perhaps these hours were rather long, they were told that work kept adults from drink and children from mischief. When I was a child, shortly after urban working men had acquired the vote, certain public holidays were established by law, to the great indignation of the upper classes. I remember hearing an old Duchess say: 'What do the poor want with holidays? They ought to work.' People nowadays are less frank, but the sentiment persists, and is the source of much of our economic confusion.\n   30  \n   31  Let us, for a moment, consider the ethics of work frankly, without superstition. Every human being, of necessity, consumes, in the course of his life, a certain amount of the produce of human labor. Assuming, as we may, that labor is on the whole disagreeable, it is unjust that a man should consume more than he produces. Of course he may provide services rather than commodities, like a medical man, for example; but he should provide something in return for his board and lodging. to this extent, the duty of work must be admitted, but to this extent only.\n   32  \n   33: I shall not dwell upon the fact that, in all modern societies outside the USSR, many people escape even this minimum amount of work, namely all those who inherit money and all those who marry money. I do not think the fact that these people are allowed to be idle is nearly so harmful as the fact that wage-earners are expected to overwork or starve.\n   34  \n   35  If the ordinary wage-earner worked four hours a day, there would be enough for everybody and no unemployment -- assuming a certain very moderate amount of sensible organization. This idea shocks the well-to-do, because they are convinced that the poor would not know how to use so much leisure. In America men often work long hours even when they are well off; such men, naturally, are indignant at the idea of leisure for wage-earners, except as the grim punishment of unemployment; in fact, they dislike leisure even for their sons. Oddly enough, while they wish their sons to work so hard as to have no time to be civilized, they do not mind their wives and daughters having no work at all. the snobbish admiration of uselessness, which, in an aristocratic society, extends to both sexes, is, under a plutocracy, confined to women; this, however, does not make it any more in agreement with common sense.\n   ..\n   43  For the present, possibly, this is all to the good. A large country, full of natural resources, awaits development, and has has to be developed with very little use of credit. In these circumstances, hard work is necessary, and is likely to bring a great reward. But what will happen when the point has been reached where everybody could be comfortable without working long hours?\n   44  \n   45: In the West, we have various ways of dealing with this problem. We have no attempt at economic justice, so that a large proportion of the total produce goes to a small minority of the population, many of whom do no work at all. Owing to the absence of any central control over production, we produce hosts of things that are not wanted. We keep a large percentage of the working population idle, because we can dispense with their labor by making the others overwork. When all these methods prove inadequate, we have a war: we cause a number of people to manufacture high explosives, and a number of others to explode them, as if we were children who had just discovered fireworks. By a combination of all these devices we manage, though with difficulty, to keep alive the notion that a great deal of severe manual work must be the lot of the average man.\n   46  \n   47  In Russia, owing to more economic justice and central control over production, the problem will have to be differently solved. the rational solution would be, as soon as the necessaries and elementary comforts can be provided for all, to reduce the hours of labor gradually, allowing a popular vote to decide, at each stage, whether more leisure or more goods were to be preferred. But, having taught the supreme virtue of hard work, it is difficult to see how the authorities can aim at a paradise in which there will be much leisure and little work. It seems more likely that they will find continually fresh schemes, by which present leisure is to be sacrificed to future productivity. I read recently of an ingenious plan put forward by Russian engineers, for making the White Sea and the northern coasts of Siberia warm, by putting a dam across the Kara Sea. An admirable project, but liable to postpone proletarian comfort for a generation, while the nobility of toil is being displayed amid the ice-fields and snowstorms of the Arctic Ocean. This sort of thing, if it happens, will be the result of regarding the virtue of hard work as an end in itself, rather than as a means to a state of affairs in which it is no longer needed.\n\n44 matches across 18 files\n",
+			"settings":
+			{
+				"buffer_size": 74991,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 67.0,
+		"height": 227.0,
 		"selected_items":
 		[
+			[
+				"scss",
+				"Set Syntax: SCSS"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"set jac",
+				"Set Syntax: JavaScript"
+			],
 			[
 				"c++",
 				"Set Syntax: C++"
@@ -659,10 +705,6 @@
 				"Set Syntax: Shell Script (Bash)"
 			],
 			[
-				"css",
-				"Set Syntax: CSS"
-			],
-			[
 				"inst",
 				"Package Control: Install Package"
 			],
@@ -736,6 +778,25 @@
 	},
 	"file_history":
 	[
+		"/Users/jordanburgess/Projects/clusterlists/settings.json",
+		"/Users/jordanburgess/Projects/clusterlists/.gitignore",
+		"/Users/jordanburgess/Projects/clusterlists/README.md",
+		"/Users/jordanburgess/Projects/clusterlists/server/server.js",
+		"/Users/jordanburgess/Projects/clusterlists/clusterlists.css",
+		"/Users/jordanburgess/Projects/clusterlists/server/publications.js",
+		"/Users/jordanburgess/Projects/clusterlists/client/main.html",
+		"/Users/jordanburgess/Projects/clusterlists/client/main.js",
+		"/Users/jordanburgess/Projects/clusterlists/client/typography.scss",
+		"/Users/jordanburgess/Projects/clusterlists/client/style.scss",
+		"/Users/jordanburgess/Projects/clusterlists/collections.js",
+		"/Users/jordanburgess/Projects/clusterlists/smart.lock",
+		"/Users/jordanburgess/Projects/clusterlists/smart.json",
+		"/Users/jordanburgess/Projects/clusterlists/server/methods.js",
+		"/Users/jordanburgess/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/jordanburgess/Library/Application Support/Sublime Text 2/Packages/User/JavaScript.sublime-settings",
+		"/Users/jordanburgess/Library/Application Support/Sublime Text 2/Packages/User/JSON.sublime-settings",
+		"/Users/jordanburgess/Projects/clusterlists/client/foundation.min.css",
+		"/Users/jordanburgess/Projects/clusterlists/clusterlists.js",
 		"/Users/jordanburgess/Projects/clusterlists/clusterlists.sublime-project",
 		"/Users/jordanburgess/Projects/compilers/PA2 Lexer/grading/test-output/longstring_escapedbackslashes.cool.out.unfilt",
 		"/Users/jordanburgess/Projects/compilers/PA2 Lexer/grading/longstring_escapedbackslashes.cool",
@@ -805,7 +866,6 @@
 		"/Users/jordanburgess/Projects/codility/distance.py",
 		"/Users/jordanburgess/Projects/codility/prefixsuffix.py",
 		"/Users/jordanburgess/Projects/codility/equi.py",
-		"/Users/jordanburgess/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Users/jordanburgess/Projects/codility/missing.py",
 		"/Users/jordanburgess/Projects/popcorn-app/README.md",
 		"/Users/jordanburgess/Projects/medicaltourism/templates/clinics/clinic_search.html",
@@ -845,25 +905,7 @@
 		"/Users/jordanburgess/Projects/medicaltourism/templates/flatpages/list-clinic.html",
 		"/Users/jordanburgess/Projects/medicaltourism/templates/consultations/home.html",
 		"/Users/jordanburgess/Projects/medicaltourism/templates/users/quotation_signup_email_subject.txt",
-		"/Users/jordanburgess/Projects/medicaltourism/templates/base/promo.html",
-		"/Users/jordanburgess/Projects/medicaltourism/templates/registration/password_reset_email.html",
-		"/Users/jordanburgess/Projects/medicaltourism/templates/users/quotation_signup_email.html",
-		"/Users/jordanburgess/Projects/medicaltourism/templates/consultations/thanks.html",
-		"/Users/jordanburgess/Projects/medicaltourism/templates/consultations/quotation_request_team_email.html",
-		"/Users/jordanburgess/Projects/medicaltourism/templates/ask/question_team_email.html",
-		"/Users/jordanburgess/Projects/medicaltourism/base/forms.py",
-		"/Users/jordanburgess/Projects/medicaltourism/appointments/views.py",
-		"/Users/jordanburgess/Projects/medicaltourism/base/urls.py",
-		"/Users/jordanburgess/Projects/medicaltourism/medicaltourism/urls.py",
-		"/Users/jordanburgess/.virtualenvs/medicaltourism/bin/postactivate",
-		"/Users/jordanburgess/Projects/medicaltourism/templates/users/login.html",
-		"/Users/jordanburgess/Projects/medicaltourism/users/forms.py",
-		"/Users/jordanburgess/Projects/medicaltourism/templates/cms/guide_page.html",
-		"/Users/jordanburgess/Projects/medicaltourism/templates/cms/blog_page.html",
-		"/Users/jordanburgess/Projects/medicaltourism/templates/cms/blog_index_page.html",
-		"/Users/jordanburgess/Projects/medicaltourism/templates/cms/text_page.html",
-		"/Users/jordanburgess/Projects/medicaltourism/templates/cms/guide_index_page.html",
-		"/Users/jordanburgess/Projects/medicaltourism/templates/base/email_base-dev.html"
+		"/Users/jordanburgess/Projects/medicaltourism/templates/base/promo.html"
 	],
 	"find":
 	{
@@ -871,7 +913,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
 			"",
@@ -893,6 +935,18 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"people",
+			"sexy",
+			"console.log(",
+			"// c",
+			"console",
+			"console.log(",
+			"console",
+			"console.l",
+			"returnValue",
+			"userPage",
+			"home",
+			"hello",
 			"yyte",
 			"error_msg = yyt",
 			"lval.error_msg = yytext",
@@ -1008,19 +1062,7 @@
 			"send",
 			"\"",
 			"import http",
-			"twilio",
-			"middle",
-			"form_valid",
-			"payload",
-			"import request",
-			"request.",
-			"from request",
-			"request",
-			"valid",
-			"<form",
-			"domain",
-			"email",
-			"confirm"
+			"twilio"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1054,11 +1096,633 @@
 		{
 			"sheets":
 			[
-			]
-		},
-		{
-			"sheets":
-			[
+				{
+					"buffer": 0,
+					"file": "client/main.html",
+					"settings":
+					{
+						"buffer_size": 3181,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								56,
+								56
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME",
+								"xxx"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110.0
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"curly": true,
+								"eqeqeq": true,
+								"forin": true,
+								"globals":
+								{
+									"Class": false,
+									"Meteor": false,
+									"_": false,
+									"jQuery": false
+								},
+								"immed": true,
+								"jquery": true,
+								"latedef": true,
+								"maxdepth": 5.0,
+								"newcap": true,
+								"noarg": true,
+								"nonew": false,
+								"regexdash": true,
+								"strict": true,
+								"sub": true,
+								"trailing": true,
+								"undef": true,
+								"unused": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501",
+								"W391"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": false,
+							"sublimelinter_delay": 2.0,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "outline",
+							"sublimelinter_notes": true,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": true,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "client/main.js",
+					"settings":
+					{
+						"buffer_size": 8618,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3974,
+								3974
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME",
+								"xxx"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110.0
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"curly": true,
+								"eqeqeq": true,
+								"forin": true,
+								"globals":
+								{
+									"Class": false,
+									"Meteor": false,
+									"_": false,
+									"jQuery": false
+								},
+								"immed": true,
+								"jquery": true,
+								"latedef": true,
+								"maxdepth": 5.0,
+								"newcap": true,
+								"noarg": true,
+								"nonew": false,
+								"regexdash": true,
+								"strict": true,
+								"sub": true,
+								"trailing": true,
+								"undef": true,
+								"unused": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501",
+								"W391"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": false,
+							"sublimelinter_delay": 2.0,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "outline",
+							"sublimelinter_notes": true,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": true,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 1.0,
+						"translation.y": 2992.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "server/methods.js",
+					"settings":
+					{
+						"buffer_size": 11002,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1054,
+								1054
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME",
+								"xxx"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110.0
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"curly": true,
+								"eqeqeq": true,
+								"forin": true,
+								"globals":
+								{
+									"Class": false,
+									"Meteor": false,
+									"_": false,
+									"jQuery": false
+								},
+								"immed": true,
+								"jquery": true,
+								"latedef": true,
+								"maxdepth": 5.0,
+								"newcap": true,
+								"noarg": true,
+								"nonew": false,
+								"regexdash": true,
+								"strict": true,
+								"sub": true,
+								"trailing": true,
+								"undef": true,
+								"unused": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501",
+								"W391"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": false,
+							"sublimelinter_delay": 2.0,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": true,
+							"sublimelinter_gutter_marks_theme": "simple",
+							"sublimelinter_mark_style": "outline",
+							"sublimelinter_notes": true,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": true,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3344.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"settings":
+					{
+						"buffer_size": 74991,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										142,
+										148
+									],
+									[
+										530,
+										536
+									],
+									[
+										9933,
+										9939
+									],
+									[
+										10838,
+										10844
+									],
+									[
+										11724,
+										11730
+									],
+									[
+										12064,
+										12070
+									],
+									[
+										12472,
+										12478
+									],
+									[
+										12856,
+										12862
+									],
+									[
+										13209,
+										13215
+									],
+									[
+										14102,
+										14108
+									],
+									[
+										14173,
+										14179
+									],
+									[
+										25116,
+										25122
+									],
+									[
+										25193,
+										25199
+									],
+									[
+										27037,
+										27043
+									],
+									[
+										27221,
+										27227
+									],
+									[
+										27404,
+										27410
+									],
+									[
+										27457,
+										27463
+									],
+									[
+										28803,
+										28809
+									],
+									[
+										31794,
+										31800
+									],
+									[
+										33469,
+										33475
+									],
+									[
+										34257,
+										34263
+									],
+									[
+										34406,
+										34412
+									],
+									[
+										36400,
+										36406
+									],
+									[
+										47204,
+										47210
+									],
+									[
+										48109,
+										48115
+									],
+									[
+										48956,
+										48962
+									],
+									[
+										49296,
+										49302
+									],
+									[
+										49665,
+										49671
+									],
+									[
+										50010,
+										50016
+									],
+									[
+										50324,
+										50330
+									],
+									[
+										51178,
+										51184
+									],
+									[
+										51249,
+										51255
+									],
+									[
+										62153,
+										62159
+									],
+									[
+										62230,
+										62236
+									],
+									[
+										64035,
+										64041
+									],
+									[
+										64219,
+										64225
+									],
+									[
+										64402,
+										64408
+									],
+									[
+										64455,
+										64461
+									],
+									[
+										65801,
+										65807
+									],
+									[
+										68792,
+										68798
+									],
+									[
+										70467,
+										70473
+									],
+									[
+										71255,
+										71261
+									],
+									[
+										71404,
+										71410
+									],
+									[
+										73398,
+										73404
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								524,
+								524
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -1079,18 +1743,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.601087510327,
 			1.0
 		],
 		"rows":
@@ -1126,6 +1783,14 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"read",
+				"README.md"
+			],
+			[
+				"serv",
+				"server/server.js"
+			],
 			[
 				"git",
 				"cool.github.flex"
@@ -1629,14 +2294,6 @@
 			[
 				"forms",
 				"static/scss/consultations/_form.scss"
-			],
-			[
-				"placeholder",
-				"static/js/base/vendor/placeholder.js"
-			],
-			[
-				"h",
-				"templates/consultations/hipmunk.html"
 			]
 		],
 		"width": 0.0
@@ -1653,6 +2310,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 241.0,
+	"side_bar_width": 171.0,
 	"status_bar_visible": true
 }

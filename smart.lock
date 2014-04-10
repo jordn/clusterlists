@@ -7,7 +7,7 @@
         "branch": "master"
       },
       "scss": {},
-      "GAnalytics": {}
+      "googleAnalytics": {}
     },
     "packages": {
       "twitter-api": {
@@ -20,10 +20,10 @@
         "tag": "v0.8.4",
         "commit": "11af0da643944d241fe7d173af76162c4b670dee"
       },
-      "GAnalytics": {
-        "git": "https://github.com/datariot/meteor-ganalytics.git",
-        "tag": "v0.1.1",
-        "commit": "91b19d37687bb2cd7976fb43b482143a53509d7e"
+      "googleAnalytics": {
+        "git": "https://github.com/yasaricli/googleAnalytics.git",
+        "tag": "v0.0.8",
+        "commit": "2c47f147d64554e870c7c02691d5c2efde040ee3"
       }
     }
   }
